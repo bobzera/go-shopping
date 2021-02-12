@@ -1,5 +1,9 @@
-export default function List({data}){ 
+import { useState } from 'react'
 
+export default function List({data, Purchased, delItem }){ 
+
+    //const [ itemList, setItemList ] = useState(data);
+    
     const handleClick = (e) => {
         e.preventDefault()
        const  ver  =  data.filter(item => item.nameItem == e.currentTarget.id); 
@@ -20,63 +24,11 @@ export default function List({data}){
     }
     const handleDelete = (e) => {
         e.preventDefault()
-        delItem(e.currentTarget.id)  
+        delItem(e.currentTarget.id)
+        alert("O item "+e.currentTarget.id+" foi deletado")  
     }
+    
 
-    async function Purchased(selected,purchasedValue){
-        
-        console.log("item "+ selected)
-        console.log("valor "+purchasedValue)
-        try {
-          const res = await fetch('./api/shopping', {
-            method: 'put',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nameItem:selected,
-                purchased:purchasedValue
-            }
-            ) 
-          })
-          
-          if (res.status === 200) {
-            // console.log("Insert done")
-           
-          } else {
-            alert('Sorry, something went wrong.')
-          }
-        } catch(err) {
-          alert(err)
-        }
-      
-}   
-
-    async function delItem(selected){
-       
-        try {
-          const res = await fetch('./api/shopping', {
-            method: 'delete',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nameItem:selected,
-            }
-            ) 
-          })
-          
-          if (res.status === 200) {
-            console.log("Insert done")
-           
-          } else {
-            alert('Sorry, something went wrong.')
-          }
-        } catch(err) {
-          alert(err)
-        }
-      
-}   
     return (
         <div>           
              
