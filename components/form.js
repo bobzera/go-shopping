@@ -26,7 +26,7 @@ const form = ({ addItem }) => {
         setUserInput("");
 
         setAlert("sucess")
-        setAlertMsg("Voce adicionol "+userInput+" com sucesso") 
+        setAlertMsg(userInput+" foi adicionado") 
         showMsg() 
     }
 
