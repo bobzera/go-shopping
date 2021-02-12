@@ -5,7 +5,7 @@ export default function App({data}){
     return(<>
     <div className="p-4 ">
         <div className="pt-20">
-            <h1 className="text-5xl text-center font-semibold text-blue-900">Hello Word</h1>
+            <h1 className="text-5xl text-center font-semibold text-blue-900">Nossa lista de Compras</h1>
         </div>
         <div className="py-10">
             <Form/>
