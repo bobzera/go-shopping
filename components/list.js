@@ -34,7 +34,7 @@ export default function List({data, Purchased, delItem }){
              
         {data.map((item) =>( 
         <div  className="" key={`${item.nameItem}`} >
-            <div className="bg-gray-100 p-2 flex">
+            <div className="bg-gray-100 p-2 py-4 flex border-b-2 border-white">
                 <div className="flex items-center cursor-pointer" id={item.nameItem}  onClick={handleClick}>
                     {item.purchased  && <svg className="w-5 h-5 bg-green-100 border-2 rounded border-green-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

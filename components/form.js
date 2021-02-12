@@ -31,9 +31,9 @@ const form = ({ addItem }) => {
     }
 
     return (<>
-        <form onSubmit={handleSubmit} className="bg-gray-100 p-2 flex ">
+        <form onSubmit={handleSubmit} className="bg-gray-100 p-2  flex ">
             <input value={userInput} type="text" onChange={handleChange} className="p-2 w-full rounded" placeholder="Buy bread and milk"/>
-            <button className="text-xl cursor-pointer hover:bg-blue-700 rounded mx-2 text-white bg-blue-500 px-4 p-2">Add</button>            
+            <button className="text-xl cursor-pointer hover:bg-blue-700 rounded  text-white ml-2 bg-blue-500 px-4 p-2">Add</button>            
         </form>
         {msg && <div className="py-2"> <Alert type={typeAlert} message={msgAlert}/> </div>} 
     </>);

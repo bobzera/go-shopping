@@ -105,7 +105,7 @@ export default function App({data}){
         <div className="pt-4">
             <h1 className="text-5xl text-center font-semibold text-blue-900">Nossa lista de Compras</h1>
         </div>
-        <div className="py-10">
+        <div className="py-4">
             <Form addItem={addItem}/>
         </div>
         <div className="">
