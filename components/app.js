@@ -1,6 +1,7 @@
 import Form from '../components/form'
+import List from '../components/list'
 
-export default function App(){
+export default function App({data}){
     return(<>
     <div className="p-4 ">
         <div className="pt-20">
@@ -8,6 +9,9 @@ export default function App(){
         </div>
         <div className="py-10">
             <Form/>
+        </div>
+        <div className="py-10">
+            <List data={data}/>
         </div>
     </div>
     </>)
