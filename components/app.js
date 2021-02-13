@@ -5,12 +5,19 @@ import { useState } from 'react'
 export default function App({data}){   
     
     const [ itemList, setItemList ] = useState(data);
-
-    
-    async function Purchased(selected,purchasedValue){
         
-        console.log("item "+ selected)
-        console.log("valor "+purchasedValue)
+    async function Purchased(selected,purchasedValue){
+
+      let pos = itemList.map(function (e) {
+        return e.nameItem;
+      }).indexOf(selected); 
+
+      let excluidio = itemList
+      excluidio[pos] = {nameItem: selected, purchased: purchasedValue}    
+      let copii = [...excluidio];
+   
+    setItemList(copii)
+
         try {
           const res = await fetch('./api/shopping', {
             method: 'put',
@@ -25,8 +32,7 @@ export default function App({data}){
           })
           
           if (res.status === 200) {
-            // console.log("Insert done")
-           
+            
           } else {
             alert('Sorry, something went wrong.')
           }
@@ -37,8 +43,21 @@ export default function App({data}){
 }   
 
     async function delItem(selected){
-       
+     
+      //FUNCTION DELETE ITEM FRONT
+      for(var i=0; i<itemList.length; i++){
+        if(itemList[i].nameItem == selected){            
+            itemList.splice(i, 1); }        
+      }
+      
+      let excluido = itemList
+      let cop = [...excluido];    
+      
+      setItemList(cop)
+       //FUNCTION DELETE ITEM FRONT
+
         try {
+         
           const res = await fetch('./api/shopping', {
             method: 'delete',
             headers: {
@@ -51,7 +70,7 @@ export default function App({data}){
           })
           
           if (res.status === 200) {
-            console.log("Insert done")
+            console.log("DELETED")
            
           } else {
             alert('Sorry, something went wrong.')
@@ -64,15 +83,15 @@ export default function App({data}){
     
     async function addItem(userInput){
 
+      if(userInput != ""){
         let copy = [...itemList]; 
-        
-        console.log(copy)
+       
         copy = [
         ...copy, 
         { nameItem:userInput, purchased:false }       
         ];
     
-    setItemList(copy);
+      setItemList(copy);}
        
         try {
           const res = await fetch('./api/shopping', {
@@ -90,12 +109,10 @@ export default function App({data}){
             console.log("Insert done")
            
           } else {
-            setAlert("error")
-            setAlertMsg("Erro! Nenhum item inserido")
-            showMsg() 
+            console.log("erro no item insert") 
           }
         } catch(err) {
-          alert(err)
+          // alert(err)
         }
       
 } 

@@ -11,7 +11,7 @@ const form = ({ addItem }) => {
     
     function showMsg(valor){
         setMsg(true)
-        setTimeout(() => setMsg(false), 2000);     
+        setTimeout(() => setMsg(false), 3000);     
     }
 
     const handleChange = (e) => {
@@ -21,13 +21,19 @@ const form = ({ addItem }) => {
     
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault();        
         addItem(userInput);
-        setUserInput("");
+        setUserInput("");        
 
         setAlert("sucess")
         setAlertMsg(userInput+" foi adicionado") 
-        showMsg() 
+        showMsg()
+        
+        if(userInput == ""){
+            setAlert("error")
+            setAlertMsg("Nenhum item inserido") 
+            showMsg()
+        }
     }
 
     return (<>

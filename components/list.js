@@ -2,19 +2,23 @@ import { useState } from 'react'
 
 export default function List({data, Purchased, delItem }){ 
 
-    //const [ itemList, setItemList ] = useState(data);
-    
     const handleClick = (e) => {
         e.preventDefault()
-       const  ver  =  data.filter(item => item.nameItem == e.currentTarget.id); 
+        
+
+       const  showNameItemSelected  =  data.filter(item => item.nameItem == e.currentTarget.id); 
+      
+
+       const statePurchased = showNameItemSelected.map((a) =>(a.purchased))
        
-       const v = ver.map((a) =>(a.purchased))
                
        const selected = e.currentTarget.id 
        let purchasedValue = false
 
-       if(v[0]){        
-        purchasedValue = false       
+       if(statePurchased[0]){        
+        purchasedValue = false 
+      
+
        }else{
         purchasedValue = true        
         }    
@@ -25,7 +29,7 @@ export default function List({data, Purchased, delItem }){
     const handleDelete = (e) => {
         e.preventDefault()
         delItem(e.currentTarget.id)
-        alert("O item "+e.currentTarget.id+" foi deletado")  
+        //alert("O item "+e.currentTarget.id+" foi deletado")  
     }
     
 
