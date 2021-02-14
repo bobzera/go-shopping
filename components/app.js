@@ -3,7 +3,7 @@ import List from '../components/list'
 import { useState } from 'react'
 
 export default function App({data}){   
-    
+
     const [ itemList, setItemList ] = useState(data);
         
     async function Purchased(selected,purchasedValue){
