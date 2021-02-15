@@ -36,7 +36,7 @@ const sideMenu = ({show}) => {
     </div>
   </div>
   
-  <div  className="  py-8 p-4 border-gray-30000 border-b-2">
+  {/* <div  className="  py-8 p-4 border-gray-30000 border-b-2">
     <div className="grid grid-cols-6">
         <div className="col-span-1">
 
@@ -50,7 +50,7 @@ const sideMenu = ({show}) => {
           </div>
             
     
-  </div>
+  </div> */}
 
   <div className=""></div>
   <div className="fixed w-full bottom-0 text-gray-500">

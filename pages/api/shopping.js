@@ -10,7 +10,7 @@ export default async (req, res) =>{
       res.status(400).json({error: "Missing Value nameItem"})
       return
     }
-    
+    // teste
     const { db } = await connectToDatabase();
     
     const response = await db.collection("items").insertOne({
