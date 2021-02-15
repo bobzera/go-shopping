@@ -2,6 +2,7 @@ import Form from '../components/form'
 import List from '../components/list'
 import { useState } from 'react'
 
+
 export default function App({data}){   
 
     const [ itemList, setItemList ] = useState(data);
@@ -19,7 +20,7 @@ export default function App({data}){
     setItemList(copii)
 
         try {
-          const res = await fetch('./api/shopping', {
+          const res = await fetch('/api/shopping', {
             method: 'put',
             headers: {
               'Content-Type': 'application/json'
@@ -58,7 +59,7 @@ export default function App({data}){
 
         try {
          
-          const res = await fetch('./api/shopping', {
+          const res = await fetch('/api/shopping', {
             method: 'delete',
             headers: {
               'Content-Type': 'application/json'
@@ -94,7 +95,7 @@ export default function App({data}){
       setItemList(copy);}
        
         try {
-          const res = await fetch('./api/shopping', {
+          const res = await fetch('/api/shopping', {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'

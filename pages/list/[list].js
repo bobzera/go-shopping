@@ -10,8 +10,6 @@ export default function List({data}){
     const [ session ] = useSession()
     const router = useRouter()
     const { list } = router.query
-
-
     
     return(<>
         <Layout>
