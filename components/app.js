@@ -118,10 +118,7 @@ export default function App({data}){
 } 
       
     return(<>
-    <div className="p-4 ">       
-        <div className="pt-4">
-            <h1 className="text-5xl text-center font-semibold text-blue-900">Nossa lista de Compras</h1>
-        </div>
+    <div className="p-4 ">     
         <div className="py-4">
             <Form addItem={addItem}/>
         </div>
