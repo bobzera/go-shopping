@@ -1,16 +1,19 @@
 import App from '../../components/app'
-import { connectToDatabase } from "../../util/mongodb"
+// import { connectToDatabase } from "../../util/mongodb"
 import { useRouter } from 'next/router'
 import Layout from '../../components/Layout'
 import { useSession } from 'next-auth/client'
 import Link from 'next/link'
+import { useState } from 'react'
 
 
-export default function List({data}){
+export default function List(){
+
+   
     const [ session ] = useSession()
     const router = useRouter()
     const { list } = router.query
-    
+
     return(<>
         <Layout>
             {session && <> 
@@ -22,14 +25,16 @@ export default function List({data}){
                     </svg>
                 /&larr; voltar</a>
                 </Link>
-                <h1 className=" p-6 text-5xl text-center font-semibold text-blue-900">{list}</h1>
+                <h1 className=" p-6 text-3xl text-center font-semibold text-blue-900">{list}</h1>
+                
             </div>
-            <App data={data}/>
+            
+            <App nameList={list}/>
             </> || 
             <div className="pt-4">
                 <h1 className="text-5xl text-center font-semibold text-blue-900">Voce nao esta logado</h1>
             </div>
-            }
+            }          
 
             
         </Layout>
@@ -38,15 +43,18 @@ export default function List({data}){
 
 
 
-export async function getServerSideProps() {
 
-    const { db } = await connectToDatabase();  
-  
-   const response = await db.collection("items").find({}).sort({ metacritic: -1 }).toArray();   
-  
-    return {
-      props: {
-       data: JSON.parse(JSON.stringify(response)),
-      }
-    }
-}
+// export async function getServerSideProps() {
+
+//   const { db } = await connectToDatabase();  
+
+//   var query = { creatBy: "weslleyzera2020@gmail.com" };
+
+//  const response = await db.collection("items").find(query).sort({ metacritic: -1 }).toArray();   
+
+//   return {
+//     props: {
+//      data: JSON.parse(JSON.stringify(response)),
+//     }
+//   }
+// }

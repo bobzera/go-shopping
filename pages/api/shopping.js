@@ -4,21 +4,38 @@ export default async (req, res) =>{
   
   if (req.method === "POST"){
 
-    const { nameItem, purchased} = req.body;    
+    const { nameItem, purchased, creatBy, nameList} = req.body;    
     
     if(!nameItem){
       res.status(400).json({error: "Missing Value nameItem"})
       return
     }
+    
     // teste
     const { db } = await connectToDatabase();
     
     const response = await db.collection("items").insertOne({
      nameItem,
-     purchased
+     purchased,
+     creatBy,
+     nameList
     })   
 
     res.status(200).json(response.ops[0])    
+  } 
+
+  if (req.method === "get"){
+
+    const { creatBy } = req.body;    
+    
+    console.log( creatBy)
+    const { db } = await connectToDatabase();
+    
+    var query = { creatBy: creatBy };
+
+    const response = await db.collection("items").find(query).sort({ metacritic: -1 }).toArray();
+
+    res.status(200).json(response)    
   } 
 
   if (req.method === "DELETE"){

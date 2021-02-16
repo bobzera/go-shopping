@@ -16,7 +16,7 @@ const Nav = ({show}) => {
             ||
             <>
             <ul className="text-xl  text-center col-start-5 col-end-7 p-2 cursor-pointer bg-blue-500  rounded">
-                <li>{!session &&<a onClick={() => signIn('auth0')} className=" text-white font-semibold">Log In</a>}</li>            
+                <li>{!session &&<a onClick={() => signIn('auth0')} className=" text-white font-semibold">Log In</a>}</li>           
                             
             </ul>             
            
