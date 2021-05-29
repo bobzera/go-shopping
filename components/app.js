@@ -1,11 +1,54 @@
 import Form from '../components/form'
 import List from '../components/list'
 import { useState } from 'react'
+import { signIn, signOut, useSession } from 'next-auth/client'
 
-export default function App({data}){   
+
+export default function App({ nameList}){   
+
     
+    const [ session ] = useSession()
+
+    const data = []
     const [ itemList, setItemList ] = useState(data);
+    
+    
+    getList()    
+      
         
+    async function getList(){
+
+      console.log("teste")
+      try {
+          const res = await fetch('/api/get-list', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                
+              nameList: nameList
+                
+              }
+            ) 
+          })
+          
+          const dataj = await res.json()
+  
+          if (res.status === 200) {       
+                   
+           const agora = JSON.parse(JSON.stringify(dataj))
+          
+           setItemList(agora)
+                      
+          
+          } else {
+            console.log("erro no item insert") 
+          }
+        } catch(err) {
+          // alert(err)
+        }}
+
     async function Purchased(selected,purchasedValue){
 
       let pos = itemList.map(function (e) {
@@ -19,7 +62,7 @@ export default function App({data}){
     setItemList(copii)
 
         try {
-          const res = await fetch('./api/shopping', {
+          const res = await fetch('/api/shopping', {
             method: 'put',
             headers: {
               'Content-Type': 'application/json'
@@ -58,7 +101,7 @@ export default function App({data}){
 
         try {
          
-          const res = await fetch('./api/shopping', {
+          const res = await fetch('/api/shopping', {
             method: 'delete',
             headers: {
               'Content-Type': 'application/json'
@@ -83,6 +126,8 @@ export default function App({data}){
     
     async function addItem(userInput){
 
+      const userEmail = await session.user.email
+
       if(userInput != ""){
         let copy = [...itemList]; 
        
@@ -94,14 +139,18 @@ export default function App({data}){
       setItemList(copy);}
        
         try {
-          const res = await fetch('./api/shopping', {
+          const res = await fetch('/api/shopping', {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 nameItem:userInput,
-                purchased:false}
+                purchased:false,
+                creatBy:userEmail,
+                nameList:nameList
+                // nameList
+              }
             ) 
           })
           
@@ -116,15 +165,16 @@ export default function App({data}){
         }
       
 } 
+
+
+
       
     return(<>
-    <div className="p-4 ">       
-        <div className="pt-4">
-            <h1 className="text-5xl text-center font-semibold text-blue-900">Nossa lista de Compras</h1>
-        </div>
+    <div className="p-4 ">     
         <div className="py-4">
             <Form addItem={addItem}/>
         </div>
+        
         <div className="">
             <List data={itemList} Purchased={Purchased} delItem={delItem}/>
         </div>
