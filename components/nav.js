@@ -8,7 +8,7 @@ const Nav = ({show}) => {
         show(true)
     }
     return (<>   
-    <div className="grid grid-cols-6 items-center p-4 shadow-md">
+    <div className="grid grid-cols-6 items-center p-4 shadow-md bg-pink-800 text-white">
         {session &&  <>      
         <h1 className="col-span-5 f text-xl text-right pr-4 font-semibold">{session.user.name}</h1>
         <img onClick={handleClick} className="w-12 col-span-1 rounded-full" src={session.user.image}/>
